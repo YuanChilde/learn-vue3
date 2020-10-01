@@ -1,6 +1,9 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
+     <a-button type="primary" @click="handleMessage">
+        Primary
+     </a-button>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -119,12 +122,24 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, inject, getCurrentInstance } from "vue";
 
 export default defineComponent({
   name: "HelloWorld",
   props: {
     msg: String
+  },
+  setup(){
+    const appConfig: any = inject("AppConfig")
+    //const ctx: any = getCurrentInstance()
+
+    function handleMessage() {
+      appConfig?.$message.info('This is a normal message')
+      //ctx.appContext.config.globalProperties.$message.info('This is a normal message')
+    }
+    return{
+      handleMessage
+    }
   }
 });
 </script>

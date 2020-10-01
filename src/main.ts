@@ -1,9 +1,21 @@
-import { createApp } from "vue";
+import { createApp } from "vue"
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 
-createApp(App)
-  .use(store)
-  .use(router)
-  .mount("#app");
+import { loadAllPlugins } from "@/plugins"
+import { AppConfig } from "@/config/app"
+
+
+const app: ReturnType<typeof createApp> = createApp(App)
+
+app.config.globalProperties = AppConfig
+
+app.provide("AppConfig", AppConfig)
+
+loadAllPlugins(app)
+
+app
+.use(store)
+.use(router)
+.mount("#app")
