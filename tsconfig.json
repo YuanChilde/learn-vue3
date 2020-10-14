@@ -10,32 +10,21 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+    "outDir": "./out",
     "baseUrl": ".",
-    "types": [
-      "webpack-env",
-      "mocha",
-      "chai"
-    ],
+    "types": ["webpack-env", "mocha", "chai"],
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
-    "lib": [
-      "esnext",
-      "dom",
-      "dom.iterable",
-      "scripthost"
-    ]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
     "tests/**/*.ts",
-    "tests/**/*.tsx"
+    "tests/**/*.tsx",
+    "src/libs/sign.tsbak"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules", "dist"]
 }

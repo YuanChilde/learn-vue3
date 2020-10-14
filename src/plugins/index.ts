@@ -1,4 +1,4 @@
-import { createApp } from "vue"
+import { createApp } from 'vue'
 
 /**
  * @description 加载所有Plugins
@@ -6,7 +6,7 @@ import { createApp } from "vue"
  */
 export function loadAllPlugins(app: ReturnType<typeof createApp>) {
   const files = require.context('.', true, /\.ts$/)
-  files.keys().forEach((key) => {
+  files.keys().forEach(key => {
     if (key !== './index.ts') files(key).default(app)
   })
 }

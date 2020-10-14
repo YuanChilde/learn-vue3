@@ -1,5 +1,5 @@
-import { Button, Card, Row, Col, Tag, Form, Input } from "ant-design-vue"
-import { createApp } from "vue"
+import { Button, Card, Row, Col, Tag, Form, Input } from 'ant-design-vue'
+import { createApp } from 'vue'
 
 /**
  * @description 手动注册 antd-vue 组件,达到按需加载目的

@@ -1,9 +1,16 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-     <a-button type="primary" @click="handleMessage">
-        Primary
-     </a-button>
+    <a-button type="primary" @click="handleMessage">
+      Primary
+    </a-button>
+
+    <a-button type="primary" @click="testReq">
+      请求数据
+    </a-button>
+    <p>
+      {{ reqData }}
+    </p>
     <p>
       For a guide and recipes on how to configure / customize this project,<br />
       check out the
@@ -122,26 +129,45 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, getCurrentInstance } from "vue";
+import { defineComponent, inject, getCurrentInstance, reactive, ref } from 'vue'
+
+import UserService from '@/api/user'
 
 export default defineComponent({
-  name: "HelloWorld",
+  name: 'HelloWorld',
   props: {
     msg: String
   },
-  setup(){
-    const appConfig: any = inject("AppConfig")
-    //const ctx: any = getCurrentInstance()
+  setup() {
+    const appConfig: any = inject('AppConfig')
+    console.log(appConfig)
+
+    const ctx: any = getCurrentInstance()
+    console.warn('111')
+    console.log(ctx.appContext.config.globalProperties)
+
+    const reqData = ref()
 
     function handleMessage() {
-      appConfig?.$message.info('This is a normal message')
+      appConfig.$message.info('This is a normal message')
       //ctx.appContext.config.globalProperties.$message.info('This is a normal message')
     }
-    return{
-      handleMessage
+    // 方法加入 async await
+    function testReq() {
+      UserService.getTest('123', { tt: '123' }).then(data => {
+        console.log(data)
+        reqData.value = data
+      })
+      console.log('121221')
+    }
+
+    return {
+      handleMessage,
+      testReq,
+      reqData
     }
   }
-});
+})
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
